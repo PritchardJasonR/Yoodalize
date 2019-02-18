@@ -9,36 +9,29 @@ module.exports = {
     after: browser => {
         browser.end()
     },
-    'Add a profile photo': browser => {
+    'Add a profile photo and documents': browser => {
         //log in to account
+        browser.maximizeWindow()
         client.userLogin()
 
             // navigate to add profile photo page
             .click('@userMenus')
             .clickText('Edit Profile')
             .waitForElementPresent('.EditProfile-container-clc6i')
-            .click('@photoMenu')
+            .clickText('Profile Photo')
 
             // add a photo
             .setValue('input[type="file"]', require('path').resolve('/Users/Equa1/Desktop/Dev/Yood/images/userPhoto.jpg'))
-        client.pause(1000)
-
+        
         // verification
         client.waitForElementPresent('@photoTrash')
+        
+        
+        //Navigate to adding Documents
+        .clickText('Trust and Verification')
+        .waitForElementPresent('@addDocument')
+        .click('@addDocument')
 
-    },
-
-    'Add Documents': browser => {
-        browser.maximizeWindow()
-
-        //Navigate to add documents
-        client
-            .click('@userMenus')
-            .clickText('Edit Profile')
-            .waitForElementPresent('@trustMenu')
-            .click('@trustMenu')
-            .waitForElementPresent('@addDocument')
-            .click('@addDocument')
 
         //Test
         client.waitForElementPresent('input[type="file"]', 5000)
@@ -53,10 +46,8 @@ module.exports = {
         client.userLogin()
             .click('@userMenus')
             .clickText('Edit Profile')
-            .waitForElementPresent('@trustMenu')
-            .click('@trustMenu')
+            .clickText('Trust and Verification')
             .waitForElementPresent('@addDocument')
-            .getLocationInView("@addDocument")
             .click('@addDocument')
         client.waitForElementPresent('.listPhotoContainer', 1000)
 

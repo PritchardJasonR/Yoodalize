@@ -20,7 +20,7 @@ var yoodCommands = {
             // fill user info
             .setValue('@firstName', 'Tim')
             .setValue('@lastName', 'Granger')
-            .setValue('@email', 'shel.proctor@yahoo.com')
+            .setValue('@email', 'cat@fake.com')
             .setValue('@password', '12345678')
             .setValue('@month', '8')
             .setValue('@day', '31')
@@ -41,7 +41,7 @@ var yoodCommands = {
             .waitForElementVisible('body', 1000)
 
             //The action
-            .setValue('@email', 'shel.proctor@yahoo.com')
+            .setValue('@email', 'cat@fake.com')
             .setValue('@password', '12345678')
             .click('@login')
 
