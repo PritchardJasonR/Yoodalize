@@ -1,5 +1,6 @@
 # Yoodlize 1.0
 First automation in a simulated live environment
+Link to test paln https://dmutah.atlassian.net/wiki/spaces/PLAN/pages/edit/6914120?draftId=7012564&draftShareId=7272dd11-18fe-4935-8c4e-adf24b92ae67&
 
 **Work in Progress**
 
