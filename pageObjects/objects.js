@@ -101,6 +101,11 @@ module.exports = {
             selector: '(//div[@class="sc-jqCOkK lgUaOg sc-gqjmRU fptSCa"])[3]',
             locateStrategy: 'xpath'
         },
+        verifyEmail: {
+
+        selector: '//button[contains(text(), "Verify Email")]',
+        locateStrategy: 'xpath'
+        },
 
         logout: {
             selector: '(//button[@class="btn btn-link"])[2]',
