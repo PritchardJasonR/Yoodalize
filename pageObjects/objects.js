@@ -20,7 +20,7 @@ var yoodCommands = {
             // fill user info
             .setValue('@firstName', 'Tim')
             .setValue('@lastName', 'Granger')
-            .setValue('@email', 'cat@fake.com')
+            .setValue('@email', 'woof@cat.com')
             .setValue('@password', '12345678')
             .setValue('@month', '8')
             .setValue('@day', '31')
@@ -41,7 +41,7 @@ var yoodCommands = {
             .waitForElementVisible('body', 1000)
 
             //The action
-            .setValue('@email', 'cat@fake.com')
+            .setValue('@email', 'woof@cat.com')
             .setValue('@password', '12345678')
             .click('@login')
 
@@ -74,6 +74,7 @@ module.exports = {
     commands: [yoodCommands],
     elements: {
 
+        homepage: '[class="Header-brand-2oS_y Header-brandImg-1BgQy navbar-brand"]',
         login: 'button[type="submit"]',
         dropDown: '.dropdown-menu',
         password: 'input[name="password"]',
@@ -95,9 +96,7 @@ module.exports = {
         zip: 'input[name="zipcode"]',
         defaultPayout: 'span[class="label label-success"]',
         paypal: 'input[value="1"]',
-
-
-
+        
 
         logout: {
             selector: '(//button[@class="btn btn-link"])[2]',
@@ -133,5 +132,65 @@ module.exports = {
             selector: '(//div[@class="sc-jqCOkK hRBjNq sc-gqjmRU kYEOFd"])[2]',
             locateStrategy: 'xpath'
         },
+     
+        //xpath selectors for catergories
+        kitchen: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[7]',
+            locateStrategy: 'xpath'
+        },
+        lawn: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[9]',
+            locateStrategy: 'xpath'
+        },
+        experts: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[13]',
+            locateStrategy: 'xpath'
+        },
+        experiences: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[14]',
+            locateStrategy: 'xpath'
+        },
+        vehicles: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[5]',
+            locateStrategy: 'xpath'
+        },
+        venues: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[12]',
+            locateStrategy: 'xpath'
+        },
+        tools: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[1]',
+            locateStrategy: 'xpath'
+        },
+        outgear: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[2]',
+            locateStrategy: 'xpath'
+        },
+        electronics: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[3]',
+            locateStrategy: 'xpath'
+        },
+        party: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[4]',
+            locateStrategy: 'xpath'
+        },
+        clothing: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[6]',
+            locateStrategy: 'xpath'
+        },
+        toys: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[8]',
+            locateStrategy: 'xpath'
+        },
+        sports: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[10]',
+            locateStrategy: 'xpath'
+        },
+        business: {
+            selector: '(//div[@class="sc-jqCOkK hjfIlr sc-gqjmRU fptSCa"])[11]',
+            locateStrategy: 'xpath'
+        },
+        
+        
     }
 }

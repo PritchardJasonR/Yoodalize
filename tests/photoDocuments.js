@@ -21,7 +21,7 @@ module.exports = {
             .clickText('Profile Photo')
 
             // add a photo
-            .setValue('input[type="file"]', require('path').resolve('/Users/Equa1/Desktop/Dev/Yood/images/userPhoto.jpg'))
+            .setValue('input[type="file"]', require('path').resolve('/Users/hotti/OneDrive/Documents/GitHub/Yoodlize/images/userPhoto.jpg'))
         
         // verification
         client.waitForElementPresent('@photoTrash')
@@ -35,9 +35,9 @@ module.exports = {
 
         //Test
         client.waitForElementPresent('input[type="file"]', 5000)
-            .setValue('input[type="file"]', require('path').resolve('/Users/Equa1/Desktop/Dev/Yood/images/doc1.jpg'))
+            .setValue('input[type="file"]', require('path').resolve('/Users/hotti/OneDrive/Documents/GitHub/Yoodlize/images/doc1.jpg'))
         client.waitForElementPresent('.DocumentList-listPhotoMedia-1_GqT')
-            .setValue('input[type="file"]', require('path').resolve('/Users/Equa1/Desktop/Dev/Yood/images/doc2.pdf'))
+            .setValue('input[type="file"]', require('path').resolve('/Users/hotti/OneDrive/Documents/GitHub/Yoodlize/images/doc2.pdf'))
         client.waitForElementPresent('.listPhotoContainer')
         client.pause(5000)
 
