@@ -1,5 +1,9 @@
 var client = {}
-// var data = require('../testAssets/dataDriven')
+var fillCreate = require('../testAssets/fillCreate.js')
+var fillEdit = require('../testAssets/fillEdit.js')
+var fillLogin = require('../testAssets/fillLogin.js')
+var fillData = require('../testAssets/fillData.js')
+
 module.exports = {
     beforeEach: browser => {
         client = browser.page.objects()
@@ -9,59 +13,76 @@ module.exports = {
     after: browser => {
         browser.end()
     },
-    'Create and Edit': browser => {
-        client
-            //create and verify successful creation
-            .createUser()
-        client.userLogout()
-        client.userLogin()
 
-        //navigate to Edit fields
+
+    'Create and Edit': browser => {
+        browser.maximizeWindow()
+        client
+            //The set up
+            .clickText('Sign up')
+            .waitForElementPresent('.SignupModal-root-3YXgm')
+            .clickText('Sign up with Email')
+
+
+        // The action
+        fillCreate(client, fillData.email, fillData.password, fillData.createFName, fillData.CreateLName, fillData.createMonth, fillData.createDay, fillData.CreateYear)
+        client.clickText('Sign Up')
+        client.userLogout()
+        .waitForElementPresent('.container-fluid',1000)
+
+            //the verification
+            .clickText('Log in')
+        fillLogin(client, fillData.email, fillData.password)
+        client.click('@login')
+            .waitForElementPresent('@userMenus')
+
+
+        //The Set up
         client.waitForElementPresent('.container-fluid', 5000)
 
             .click('@userMenus')
             .clickText('Edit Profile')
             .waitForElementPresent('.EditProfile-container-clc6i')
 
-            //Edit the account
+            //The Action
             .clearValue('@firstName')
-            .setValue('@firstName', 'Shelby')
             .clearValue('@lastName')
-            .setValue('@lastName', 'Proctor')
-            .setValue('@gender', 'f')
-            .setValue('@month', '7')
-            .setValue('@day', '15')
-            .setValue('@year', '1984')
             .clearValue('@location')
-            .setValue('@location', 'The defiance in deep space')
             .clearValue('@describe')
-            .setValue('@describe', 'Former fleet admiral, trying to make a couple extra bucks')
 
-            //Save changes
-            .clickText('Save')
+
+        fillEdit(client, fillData.firstName, fillData.lastName, fillData.gender, fillData.month, fillData.day, fillData.year, fillData.location, fillData.description)
+
+        //Save changes
+        client.clickText('Save')
     },
 
 
-    //Now verify changes were made and add photo
+    //Now verify changes were made
     'verify edit was successful': browser => {
 
         client.userLogout(),
             client.waitForElementPresent('.container-fluid', 5000)
+    
+                .clickText('Log in')
 
-        client.userLogin(),
-            client.waitForElementPresent('.container-fluid', 5000)
 
-                .click('@userMenus')
-                .clickText('Edit Profile')
-                .waitForElementPresent('.EditProfile-container-clc6i')
-        client.expect.element('@firstName').to.have.value.that.equals('Shelby')
-        client.expect.element('@lastName').to.have.value.that.equals('Proctor')
-        client.expect.element('@gender').to.have.value.that.equals('Female')
-        client.expect.element('@month').to.have.value.that.equals('6')
-        client.expect.element('@day').to.have.value.that.equals('15')
-        client.expect.element('@year').to.have.value.that.equals('1984')
-        client.expect.element('@location').to.have.value.that.equals('The defiance in deep space')
-        client.expect.element('@describe').to.have.value.that.equals('Former fleet admiral, trying to make a couple extra bucks')
+        fillLogin(client, fillData.email, fillData.password)
+        
+            client.waitForElementPresent('@userMenus')
+
+            .click('@userMenus')
+            .clickText('Edit Profile')
+            .waitForElementPresent('.EditProfile-container-clc6i')
+
+        // Verification
+        client.expect.element('@firstName').to.have.value.that.equals(fillData.firstName)
+        client.expect.element('@lastName').to.have.value.that.equals(fillData.lastName)
+        client.expect.element('@month').to.have.value.that.equals((parseInt(fillData.month)-1).toString())
+        client.expect.element('@day').to.have.value.that.equals(fillData.day)
+        client.expect.element('@year').to.have.value.that.equals(fillData.year)
+        client.expect.element('@describe').to.have.value.that.equals(fillData.description)
+        client.expect.element('@location').to.have.value.that.equals(fillData.location)
 
 
 
